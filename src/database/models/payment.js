@@ -1,5 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../../config/db.js";
+import Order from './order.js';
 
 class Payment extends Model {}
 Payment.init({
@@ -27,6 +28,17 @@ Payment.init({
     modelName: 'Payment',
     tableName: 'payments',
     timestamps: true,
+});
+
+Payment.belongsTo(Order, {
+    foreignKey: 'orderId',
+    as: 'order',
+    onDelete: 'CASCADE',
+});
+
+Order.hasMany(Payment, {
+    foreignKey: 'orderId',
+    as: 'payments',
 });
 
 export default Payment;

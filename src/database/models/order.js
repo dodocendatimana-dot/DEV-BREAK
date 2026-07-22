@@ -1,5 +1,7 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../../config/db.js';
+import User from './user.js';
+import Product from './product.js';
 
 class Order extends Model {}
 Order.init({
@@ -30,11 +32,38 @@ Order.init({
         defaultValue: 'pending',
         allowNull: false,
     },
+    date: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+        allowNull: false,
+    },
 }, {
     sequelize,
     modelName: 'Order',
     tableName: 'orders',
     timestamps: true,
+});
+
+Order.belongsTo(User, {
+    foreignKey: 'userId',
+    as: 'user',
+    onDelete: 'CASCADE',
+});
+
+Order.belongsTo(Product, {
+    foreignKey: 'productId',
+    as: 'product',
+    onDelete: 'CASCADE',
+});
+
+User.hasMany(Order, {
+    foreignKey: 'userId',
+    as: 'orders',
+});
+
+Product.hasMany(Order, {
+    foreignKey: 'productId',
+    as: 'orders',
 });
 
 export default Order;

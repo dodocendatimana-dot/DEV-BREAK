@@ -1,5 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../../config/db.js';
+import User from './user.js';
 
 class Notification extends Model {}
 Notification.init({
@@ -27,6 +28,17 @@ Notification.init({
     modelName: 'Notification',
     tableName: 'notifications',
     timestamps: true,
+});
+
+Notification.belongsTo(User, {
+    foreignKey: 'userId',
+    as: 'user',
+    onDelete: 'CASCADE',
+});
+
+User.hasMany(Notification, {
+    foreignKey: 'userId',
+    as: 'notifications',
 });
 
 export default Notification;
