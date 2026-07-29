@@ -25,7 +25,7 @@ export const seedUsers = async() => {
             email: "ian@gmail.com",
             phoneNumber: "+25079217073",
             password: hashedPassword,
-            role: "customer",
+            role: "seller",
             status: "active"
         },
         {
@@ -33,7 +33,7 @@ export const seedUsers = async() => {
             email: "admin@gmail.com",
             phoneNumber: "+250792227073",
             password: hashedPassword,
-            role: "customer",
+            role: "admin",
             status: "active"
         },
     ];

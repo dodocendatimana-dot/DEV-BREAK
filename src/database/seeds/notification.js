@@ -1,6 +1,5 @@
 import Notification from '../models/notification.js';
 import User from '../models/user.js';
-import bcrypt from 'bcrypt';
 
 export const seedNotifications = async() => {
     const users = await User.findAll({ attributes: ['id'], limit: 3 });
@@ -13,17 +12,17 @@ export const seedNotifications = async() => {
     const notifications = [{
             userId: users[0].id,
             message: 'Welcome to Dev Sale!',
-            status: 'active',
+            status: 'unread',
         },
         {
             userId: users[1].id,
             message: 'Your order has been shipped.',
-            status: 'active',
+            status: 'unread',
         },
         {
             userId: users[2].id,
             message: 'Payment received successfully.',
-            status: 'active',
+            status: 'unread',
         },
     ];
 

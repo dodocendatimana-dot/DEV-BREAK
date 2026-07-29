@@ -1,0 +1,32 @@
+paths:
+  /api/register
+    post:
+      summary:register new user
+        tag:
+          -Auth
+            requestBody:
+              required:true
+                true
+              content:
+                application/json:
+                  schema:
+                    type:object
+                    properties:
+                      fullName:
+                        type:string
+                      email:
+                        type:string
+                      phoneNumber:
+                        type:string
+                      password:
+                        type:string
+                      required:
+                        -fullName
+                        -phoneNumber
+                        -email
+                        -password
+            responses:
+              201:
+                description:user registered successfully
+              400:
+                description:bad requesta

@@ -3,6 +3,7 @@ import sequelize from "../../config/db.js";
 
 
 
+
 class User extends Model {}
 User.init({
     id: {

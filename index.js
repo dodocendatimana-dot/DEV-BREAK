@@ -6,15 +6,23 @@ import OrderRoutes from "./src/routes/order.js";
 import productRoutes from "./src/routes/product.js";
 import paymentRoutes from "./src/routes/payment.js";
 import notificationRoutes from "./src/routes/notification.js";
-
+import AuthRoutes from "./src/routes/auth.js";
+import swaggerUi from "swagger-ui-express";
+import  swaggerSpec from "./src/docs/swagger.js"
 
 const app = express();
+
+
 app.use(express.json());
+app.use("/docs",
+    swaggerUi.serve,swaggerUi.setup(swaggerSpec)
+);
 app.use(userRoutes)
 app.use(OrderRoutes)
 app.use(productRoutes)
 app.use(paymentRoutes)
 app.use(notificationRoutes)
+app.use(AuthRoutes);
 const PORT = process.env.PORT || 5000;
 sequelize
     .authenticate()
